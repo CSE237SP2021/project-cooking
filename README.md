@@ -14,6 +14,6 @@ We're developing a command line tool in Java to help you plan meals.
 2. Search bar that connects to API and returns results
 3. Export chosen recipes to a file
 
-#### Additional
+### Additional
 4. Sorting by price, recipe, etc.
 5. "I'm feeling lucky" feature
