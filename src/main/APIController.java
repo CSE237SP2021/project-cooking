@@ -7,7 +7,7 @@ import io.restassured.specification.RequestSpecification;
 
 public class APIController {
 	
-	public void getRandomPopularRecipe() {
+	public String getRandomPopularRecipe() {
 		
 		RestAssured.baseURI = "http://webknox.com/api/recipes";
 		
@@ -15,7 +15,7 @@ public class APIController {
 		Response response = httpRequest.request(Method.GET, "/randomPopular");
 		
 		String responseBody = response.getBody().asString();
-		System.out.println("Response Body is =>  " + responseBody);
+		return responseBody;
 	}
 	
 	public void GetRandomRecipe(int limit) {
