@@ -1,6 +1,22 @@
 # Cooking Project
 We're developing a command line tool in Java to help you plan meals. To accomplish this, we're using the [WebKnox Recipe API](http://webknox.com/api#!/recipes/getRandomPopularRecipes_GET)
 
+## Iteration 1
+-User stories completed this iteration: 
+  -Command line interface 
+  -API connection
+  -A user can request a random recipe
+-User stories for next iteration:
+  -User can search for recipes by name
+  -A user can input ingredients and search for recipes that contain them
+-Implemented that doesn't currently work:
+  -SearchRecipesByName branch isn't finished yet, but it has been started
+-Commands to compile and run code from command line:
+  -Compile using javac on Main.java, APIController.java, Controller.java, and InputFilter.java
+  -Run using java on Main.java
+  -Alternatively, you could run it on the Eclipse consol (if Java on command line is not working)
+  -You will also have to download the testNG following the instructions on this website: https://www.toolsqa.com/rest-assured/configure-eclipse-with-rest-assured/
+
 ## Features
 - By specifying what ingredients you'd like to use, the tool will return a list of recipes that contain those ingredients.
 - "I'm feeling lucky"-type feature that gives you a random appetizer/entree/dessert
