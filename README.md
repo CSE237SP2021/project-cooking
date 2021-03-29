@@ -3,12 +3,13 @@ We're developing a command line tool in Java to help you plan meals. To accompli
 
 ## Iteration 1
 * User stories completed this iteration: 
-  * Command line interface 
-  * API connection
-  * A user can request a random recipe
+  * [A user can request a random recipe](https://github.com/CSE237SP2021/project-cooking/issues/2)
+  * [Basic prototype: Command line interface, API connection](https://github.com/CSE237SP2021/project-cooking/issues/1)
+  * [Fix: get Vi's work in the remote repo](https://github.com/CSE237SP2021/project-cooking/issues/6)
+  * [A user can export recipes as HTML files](https://github.com/CSE237SP2021/project-cooking/issues/3)
 * User stories for next iteration:
-  * User can search for recipes by name
-  * A user can input ingredients and search for recipes that contain them
+  * [A user can search for recipes by name](https://github.com/CSE237SP2021/project-cooking/issues/4)
+  * [A user can input ingredients and search for recipes that contain them](https://github.com/CSE237SP2021/project-cooking/issues/5)
 * Implemented that doesn't currently work:
   * SearchRecipesByName branch isn't finished yet, but it has been started
 * Commands to compile and run code from command line:
