@@ -13,7 +13,7 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		String response = controller.initialize();
-		if (response.equals("Y")) {
+		if (response.equals("1")) {
 			String text = aPIController.getRandomPopularRecipe();
 			JSONObject json = (JSONObject) JSONValue.parse(text);
 			
@@ -48,7 +48,7 @@ public class Main {
 			writer.flush();
 			writer.close();
 			System.out.println("Recipe output in " + filename + ".html");
+			controller.continuePrompt();
 		}
-//		aPIController.GetRandomPopularRecipe();
 	}
 }
