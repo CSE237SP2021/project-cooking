@@ -1,6 +1,11 @@
 package main;
 import java.util.Scanner;
 
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
 
 /**
  * Class that handles logic for user input and displaying menu options
@@ -54,6 +59,15 @@ public class Controller {
 	
 	public String searchByKeyword(String keywordInput) {
 		//call the actual search method here 
+		RestAssured.baseURI = "http://webknox.com/api/recipes";
+		String apiKey = "bgbghcgbgjukoguhcldfqdvmhrctifm"; //Vishesh API key
+		
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.request(Method.GET, "/complexSearch?query=" + keywordInput);
+		
+		String responseBody = response.getBody().asString();
+		System.out.println("Response Body is =>  " + responseBody);
+		
 		return null;
 	}
 	
