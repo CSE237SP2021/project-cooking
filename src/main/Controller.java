@@ -16,7 +16,7 @@ public class Controller {
 	}
 	
 	public String initialize() {
-		System.out.println("Hello, welcome to the cooking app! ");
+		System.out.println("Hello, welcome to the cooking app!");
 		System.out.println("Simply type in the letter 'h' if you would like to see available commands.");
 		
 		return selectAction();
