@@ -8,14 +8,15 @@ import io.restassured.RestAssured;
 import io.restassured.http.Method;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import main.Controller;
 
 class ControllerTests {
 
 	@Test
 	void searchByKeywordTest() {
-		RequestSpecification httpRequest = RestAssured.given();
-		Response response = httpRequest.request(Method.GET, "/complexSearch?query=");
-		String result = response.getBody().asString();
+		Controller testController = new Controller();
+		String testKeyword = "burger";
+		String result = testController.searchByKeyword(testKeyword);
 		boolean isNull = result.isEmpty();
 		assertFalse(isNull);
 	}

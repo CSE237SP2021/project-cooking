@@ -60,15 +60,15 @@ public class Controller {
 	public String searchByKeyword(String keywordInput) {
 		//call the actual search method here 
 		RestAssured.baseURI = "http://webknox.com/api/recipes";
-		String apiKey = "bgbghcgbgjukoguhcldfqdvmhrctifm"; //Vishesh API key
+		String apiKey = "48ec8d46512e4c03a4d2c18b015d64af"; //Aidan API key
 		
 		RequestSpecification httpRequest = RestAssured.given();
-		Response response = httpRequest.request(Method.GET, "/complexSearch?query=" + keywordInput);
+		Response response = httpRequest.request(Method.GET, "/complexSearch?apiKey=" + apiKey + "&query=" + keywordInput);
 		
 		String responseBody = response.getBody().asString();
 		System.out.println("Response Body is =>  " + responseBody);
 		
-		return null;
+		return responseBody;
 	}
 	
 	public String searchByIngredient(String ingredientInput) {
