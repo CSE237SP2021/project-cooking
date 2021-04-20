@@ -1,6 +1,11 @@
 package main;
 import java.util.Scanner;
 
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.specification.RequestSpecification;
+
 
 /**
  * Class that handles logic for user input and displaying menu options
@@ -58,7 +63,15 @@ public class Controller {
 	}
 	
 	public String searchByIngredient(String ingredientInput) {
-		return null;
+		RestAssured.baseURI = "http://webknox.com/api/recipes";
+		String apiKey = "48ec8d46512e4c03a4d2c18b015d64af"; //Aidan API key
+		
+		RequestSpecification httpRequest = RestAssured.given();
+		Response response = httpRequest.request(Method.GET, "/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredientInput);
+		
+		String responseBody = response.getBody().asString();
+		System.out.println("Response Body is =>  " + responseBody);
+		return responseBody;
 	}
 	
 	public void commandOptions() {
