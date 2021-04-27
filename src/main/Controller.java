@@ -41,12 +41,12 @@ public class Controller {
 				break;
 			case("2"): //call search by term method here
 				String keywordInput = scanner.nextLine();
-				searchByKeyword(keywordInput);
+				callSearchByKeyword(keywordInput);
 				System.out.println("Searching for your recipe: ");
 				break;
 			case("3"): //call search by ingredient method here
 				String ingredientInput = scanner.nextLine();
-				searchByIngredient(ingredientInput);
+				callSearchByIngredient(ingredientInput);
 				System.out.println("Searching for recipes with the ingredient you specified: ");
 				break;
 			default:
@@ -57,30 +57,14 @@ public class Controller {
 		return response;
 	}
 	
-	public String searchByKeyword(String keywordInput) {
-		//call the actual search method here 
-		RestAssured.baseURI = "http://webknox.com/api/recipes";
-		String apiKey = "48ec8d46512e4c03a4d2c18b015d64af"; //Aidan API key
-		
-		RequestSpecification httpRequest = RestAssured.given();
-		Response response = httpRequest.request(Method.GET, "/complexSearch?apiKey=" + apiKey + "&query=" + keywordInput);
-		
-		String responseBody = response.getBody().asString();
-		System.out.println("Response Body is =>  " + responseBody);
-		
-		return responseBody;
+	public String callSearchByKeyword(String keywordInput) { 
+		APIController searcher = new APIController();
+		return searcher.searchByKeyword(keywordInput);
 	}
 	
-	public String searchByIngredient(String ingredientInput) {
-		RestAssured.baseURI = "http://webknox.com/api/recipes";
-		String apiKey = "48ec8d46512e4c03a4d2c18b015d64af"; //Aidan API key
-		
-		RequestSpecification httpRequest = RestAssured.given();
-		Response response = httpRequest.request(Method.GET, "/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredientInput);
-		
-		String responseBody = response.getBody().asString();
-		System.out.println("Response Body is =>  " + responseBody);
-		return responseBody;
+	public String callSearchByIngredient(String ingredientInput) {
+		APIController searcher = new APIController();
+		return searcher.searchByIngredient(ingredientInput);
 	}
 	
 	public void commandOptions() {
