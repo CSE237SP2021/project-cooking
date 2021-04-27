@@ -31,7 +31,6 @@ public class APIController {
 	}
 	
 	public String searchByKeyword(String keywordInput) {
-		//call the actual search method here 
 		RestAssured.baseURI = "http://webknox.com/api/recipes";
 		String apiKey = "48ec8d46512e4c03a4d2c18b015d64af"; //Aidan API key
 		
