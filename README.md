@@ -1,5 +1,5 @@
 # Cooking Project
-We're developing a command line tool in Java to help you plan meals. To accomplish this, we're using the [WebKnox Recipe API](http://webknox.com/api#!/recipes/getRandomPopularRecipes_GET). Updated ReadMe for Iteration 2 is in Dev Branch.
+We're developing a command line tool in Java to help you plan meals. To accomplish this, we're using the [WebKnox Recipe API](http://webknox.com/api#!/recipes/getRandomPopularRecipes_GET)
 
 ## Iteration 2
 * User stories completed this iteration:
