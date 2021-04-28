@@ -14,10 +14,16 @@ public class Controller {
 	
 	Scanner scanner;
 	InputFilter inputFilter;
+	APIController aPIController;
+	Exporter exporter;
+	RecipeOutputter recipeOutputter;
 	
 	public Controller() {
 		scanner = new Scanner(System.in);
 		inputFilter = new InputFilter();
+		aPIController = new APIController();
+		exporter = new Exporter();
+		recipeOutputter = new RecipeOutputter();
 	}
 	
 	public String initialize() {
@@ -37,17 +43,28 @@ public class Controller {
 				return selectAction();
 			case("1"): //search for random recipe
 				System.out.println("Searching for a random recipe... ");
-				//call the code that's currently written in main as its own method here
+				String text = aPIController.getRandomPopularRecipe();
+				exporter.export(text);
+				continuePrompt();
 				break;
 			case("2"): //call search by term method here
+				System.out.println("Type a keyword to search for a recipe you're interested in");
 				String keywordInput = scanner.nextLine();
-				searchByKeyword(keywordInput);
 				System.out.println("Searching for your recipe: ");
+				searchByKeyword(keywordInput);
+				continuePrompt();
 				break;
 			case("3"): //call search by ingredient method here
+				System.out.println("Type a keyword to search for a recipe with an ingredient you're interested in");
 				String ingredientInput = scanner.nextLine();
-				searchByIngredient(ingredientInput);
 				System.out.println("Searching for recipes with the ingredient you specified: ");
+				searchByIngredient(ingredientInput);
+				continuePrompt();
+				break;
+			case("4"):
+				System.out.println("Currently checking to see what recipes are available...");
+				recipeOutputter.printOutputOfFile();
+				continuePrompt();
 				break;
 			default:
 				System.out.println("Invalid selection, please check your spelling and try again.");
@@ -87,6 +104,7 @@ public class Controller {
 		System.out.println("Press 1 to roll a random recipe.");
 		System.out.println("Press 2 to search for a specific recipe.");
 		System.out.println("Press 3 to search for a recipe by ingredient.");
+		System.out.println("Press 4 to print a recipe to the console.");
 	}
 	
 	public void continuePrompt() {
