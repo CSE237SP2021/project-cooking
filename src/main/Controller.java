@@ -14,10 +14,12 @@ public class Controller {
 	
 	Scanner scanner;
 	InputFilter inputFilter;
+	APIController aPIController;
 	
 	public Controller() {
 		scanner = new Scanner(System.in);
 		inputFilter = new InputFilter();
+		aPIController = new APIController();
 	}
 	
 	public String initialize() {
@@ -41,12 +43,12 @@ public class Controller {
 				break;
 			case("2"): //call search by term method here
 				String keywordInput = scanner.nextLine();
-				callSearchByKeyword(keywordInput);
+				aPIController.searchByKeyword(keywordInput);
 				System.out.println("Searching for your recipe: ");
 				break;
 			case("3"): //call search by ingredient method here
 				String ingredientInput = scanner.nextLine();
-				callSearchByIngredient(ingredientInput);
+				aPIController.searchByIngredient(ingredientInput);
 				System.out.println("Searching for recipes with the ingredient you specified: ");
 				break;
 			default:
@@ -55,16 +57,6 @@ public class Controller {
 		}
 		
 		return response;
-	}
-	
-	public String callSearchByKeyword(String keywordInput) { 
-		APIController searcher = new APIController();
-		return searcher.searchByKeyword(keywordInput);
-	}
-	
-	public String callSearchByIngredient(String ingredientInput) {
-		APIController searcher = new APIController();
-		return searcher.searchByIngredient(ingredientInput);
 	}
 	
 	public void commandOptions() {
