@@ -50,15 +50,15 @@ public class Controller {
 			case("2"): //call search by term method here
 				System.out.println("Type a keyword to search for a recipe you're interested in");
 				String keywordInput = scanner.nextLine();
-				System.out.println("Searching for your recipe: ");
-				searchByKeyword(keywordInput);
+				aPIController.searchByKeyword(keywordInput);
+        System.out.println("Searching for your recipe: ");
 				continuePrompt();
 				break;
 			case("3"): //call search by ingredient method here
 				System.out.println("Type a keyword to search for a recipe with an ingredient you're interested in");
 				String ingredientInput = scanner.nextLine();
+				aPIController.searchByIngredient(ingredientInput);
 				System.out.println("Searching for recipes with the ingredient you specified: ");
-				searchByIngredient(ingredientInput);
 				continuePrompt();
 				break;
 			case("4"):
@@ -72,32 +72,6 @@ public class Controller {
 		}
 		
 		return response;
-	}
-	
-	public String searchByKeyword(String keywordInput) {
-		//call the actual search method here 
-		RestAssured.baseURI = "http://webknox.com/api/recipes";
-		String apiKey = "48ec8d46512e4c03a4d2c18b015d64af"; //Aidan API key
-		
-		RequestSpecification httpRequest = RestAssured.given();
-		Response response = httpRequest.request(Method.GET, "/complexSearch?apiKey=" + apiKey + "&query=" + keywordInput);
-		
-		String responseBody = response.getBody().asString();
-		System.out.println("Response Body is =>  " + responseBody);
-		
-		return responseBody;
-	}
-	
-	public String searchByIngredient(String ingredientInput) {
-		RestAssured.baseURI = "http://webknox.com/api/recipes";
-		String apiKey = "48ec8d46512e4c03a4d2c18b015d64af"; //Aidan API key
-		
-		RequestSpecification httpRequest = RestAssured.given();
-		Response response = httpRequest.request(Method.GET, "/findByIngredients?apiKey=" + apiKey + "&ingredients=" + ingredientInput);
-		
-		String responseBody = response.getBody().asString();
-		System.out.println("Response Body is =>  " + responseBody);
-		return responseBody;
 	}
 	
 	public void commandOptions() {
