@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
+import java.awt.Desktop;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -26,13 +27,31 @@ public class RecipeOutputter {
 		inputFilter = new InputFilter();
 	}
 	
+	
 	public String[] getFilesInDir(File directory) {
-		String[] allFiles = directory.list();
+		String[] allFiles = directory.list((d,s) -> {
+			return s.toLowerCase().endsWith(".html");
+		});
 		return allFiles;
 	}
 
-	public void printOutputOfFile() {
-		printRecipe(selectRecipe());
+	public void viewOutputOfFile() {
+		File targetFile = new File("./recipes/" + selectRecipe());
+		Desktop desktop = Desktop.getDesktop();
+		
+		try {
+			if (!targetFile.exists()) {
+				System.out.println("Uh oh. Looks like the file got deleted somehow. Weird.");
+				return;
+			}
+			if (Desktop.isDesktopSupported()) {
+				desktop.open(targetFile);
+			} else {
+				printRecipe(targetFile);
+			}
+		} catch (IOException e) {
+			System.out.println("Darn. Looks like we're having trouble opening that file. Try again some other time.");
+		}
 	}
 	
 	public File getRecipeDir() {
@@ -40,6 +59,7 @@ public class RecipeOutputter {
 	}
 	
 	public void getAvailableRecipeNames() {
+		files = getFilesInDir(recipeDir);
 		for (int i = 0; i < files.length; ++i) {
 			System.out.println(i + ": " + files[i]);
 		}
@@ -70,16 +90,8 @@ public class RecipeOutputter {
 	}
 	
 	//method to print that recipe file to console, UI method
-	public void printRecipe(String fileName) {
-		String targetFilePath = "./recipes/" + fileName;
-		System.out.println("target file url is: "+ targetFilePath);
-		File targetFile = new File(targetFilePath);
-		try {
-			Document doc = Jsoup.parse(targetFile, "UTF-8", "");
-			System.out.println(doc.toString());
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void printRecipe(File f) throws IOException {
+		Document doc = Jsoup.parse(f, "UTF-8", "");
+		System.out.println(doc.toString());
 	}
 }
