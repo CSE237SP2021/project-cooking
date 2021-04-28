@@ -18,4 +18,15 @@ public class InputFilter {
 		}
 	}
 	
+	public boolean isNumber(String input) {
+		try {
+			Integer.parseInt(input);
+			return true;
+		} catch (NumberFormatException e){
+			return false;
+		}
+	
+		
+	}
+	
 }

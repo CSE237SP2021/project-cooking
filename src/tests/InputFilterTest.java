@@ -32,4 +32,17 @@ public class InputFilterTest {
 		assertTrue("space returns false", inFilter.yesNoFilter(space) == false);
 	}
 	
+	@Test 
+	public void testIsNumber() {
+		InputFilter inFilter = new InputFilter();
+		
+		String input1 = "30303";
+		String input2 = "^_^";
+		String input3 = " 3 ";
+		
+		assertTrue("Input one is a number", inFilter.isNumber(input1) == true);
+		assertTrue("Input two is not a number", inFilter.isNumber(input2) == false);
+		assertTrue("Input three is not a well formed number", inFilter.isNumber(input3) == false);
+	}
+	
 }
