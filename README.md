@@ -51,8 +51,6 @@ We've developed a command line tool in Java to help you come up with new recipe 
 - A search feature that sorts results by price, etc.
 - Exports recipes in a friendly, printable format
 
-## Next steps
-
 ### Basic 
 1. Running command opens up main menu type environment
 2. Search bar that connects to API and returns results
