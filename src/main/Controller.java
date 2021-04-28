@@ -37,40 +37,39 @@ public class Controller {
 		System.out.println("What would you like to do?");
 		String response = scanner.nextLine();
 		System.out.println("You typed " + response);
+		
+		String text;
 		switch(response) {
 			case("h"): //print commands
 				commandOptions();
 				return selectAction();
 			case("1"): //search for random recipe
 				System.out.println("Searching for a random recipe... ");
-				String text = aPIController.getRandomPopularRecipe();
+				text = aPIController.getRandomPopularRecipe();
 				exporter.export(text);
-				continuePrompt();
 				break;
 			case("2"): //call search by term method here
 				System.out.println("Type a keyword to search for a recipe you're interested in");
 				String keywordInput = scanner.nextLine();
+				System.out.println("Searching for your recipe...");
 				aPIController.searchByKeyword(keywordInput);
-        System.out.println("Searching for your recipe: ");
-				continuePrompt();
 				break;
 			case("3"): //call search by ingredient method here
 				System.out.println("Type a keyword to search for a recipe with an ingredient you're interested in");
 				String ingredientInput = scanner.nextLine();
+				System.out.println("Searching for recipes with the ingredient you specified...");
 				aPIController.searchByIngredient(ingredientInput);
-				System.out.println("Searching for recipes with the ingredient you specified: ");
-				continuePrompt();
 				break;
 			case("4"):
-				System.out.println("Currently checking to see what recipes are available...");
-				recipeOutputter.printOutputOfFile();
-				continuePrompt();
+				System.out.println("Checking to see what recipes are available...");
+				recipeOutputter.viewOutputOfFile();
 				break;
 			default:
-				System.out.println("Invalid selection, please check your spelling and try again.");
+				System.out.println("That doesn't look like a suggestion. Please check your spelling and try again.");
 				selectAction();
 		}
-		
+		continuePrompt();
+	
 		return response;
 	}
 	
@@ -89,7 +88,7 @@ public class Controller {
 			continuePrompt();
 		} 
 		
-		if (response.equals("Y")) {
+		if (response.toLowerCase().equals("y")) {
 			selectAction();
 		} else {
 			System.out.println("Thanks for using our app!");

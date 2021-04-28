@@ -1,5 +1,23 @@
 # Cooking Project
-We're developing a command line tool in Java to help you plan meals. To accomplish this, we're using the [WebKnox Recipe API](http://webknox.com/api#!/recipes/getRandomPopularRecipes_GET)
+We've developed a command line tool in Java to help you come up with new recipe ideas. To accomplish this, we're using the [WebKnox Recipe API](http://webknox.com/api#!/recipes/getRandomPopularRecipes_GET)
+
+## Iteration 3
+* User stories completed this iteration:
+  * [A user can input ingredients and search for recipes that contain them.](https://github.com/CSE237SP2021/project-cooking/issues/5)
+  * [A user can search for recipes by name](https://github.com/CSE237SP2021/project-cooking/issues/4)
+  * [Add Number Filtering and a Corresponding Unit Test to InputFilter](https://github.com/CSE237SP2021/project-cooking/issues/28)
+  * [A user can select one of recipes (in folder) from command line and print it in the command line.](https://github.com/CSE237SP2021/project-cooking/issues/19)
+  * [Move Controller Tests code to API Controller as well as search methods to API Controller](https://github.com/CSE237SP2021/project-cooking/issues/27)
+  * [A user's recipes appear in an output folder (rather than just a file)](https://github.com/CSE237SP2021/project-cooking/issues/21)
+  * [A user's exported recipe is aesthetically appealing (through CSS).](https://github.com/CSE237SP2021/project-cooking/issues/31)
+  * Note: [PC10: Investigate Unit Testing Additions for Controller Class](https://github.com/CSE237SP2021/project-cooking/issues/9) from last iteration was closed, and the necessary changes from it were included in another PR.
+* Unfinished features:
+  * The search for recipes by ingredient and by name features are implemented, but only return raw JSON (unlike the styled HTML that random searches return). To our surprise, calls to the WebKnox API from the search-by-ingredient and search-by-name endpoints returned JSON objects of vastly different structure than the random-search endpoint. Given more time on the project, we would add logic to the Exporter class to handle these new structures.
+* Commands to compile and run code from command line:  
+  * Compile using javac on Main.java, APIController.java, Controller.java, Exporter.java, RecipeOutputter.java, and InputFilter.java
+  * Run using java on Main.java
+  * Alternatively, you could run it on the Eclipse console (if Java on command line is not working)
+  * You will also have to download the testNG following the instructions on this website: https://www.toolsqa.com/rest-assured/configure-eclipse-with-rest-assured/
 
 ## Iteration 2
 * User stories completed this iteration:

@@ -32,6 +32,7 @@ public class Exporter {
 			System.out.println("We found a good-looking recipe for " + title + " that we think you'll love...");
 			
 			if (title == null || instructions == null || ingredientsArray == null) {
+				System.out.println("...but there was an issue with it, so we weren't able to grab it for you. Sorry about that :(");
 				return returnCode.missing_fields_failure;
 			}
 			
@@ -59,8 +60,10 @@ public class Exporter {
 			
 
 			if (writeToFile(filename, contents)) {
+				System.out.println("...and we got it! You'll find it at /recipes/" + filename);
 				return returnCode.success;
 			} else {
+				System.out.println("...but we had trouble making a new file for it, so it was lost. Sorry about that :(");
 				return returnCode.file_creation_failure;
 			}
 	
@@ -71,6 +74,7 @@ public class Exporter {
 		 * isn't a proper JSON array. Since these errors are related, they return the same returnCode.
 		 */
 		catch (ParseException | ClassCastException e) {
+			System.out.println("...but there was an issue with it, so we weren't able to grab it for you. Sorry about that :(");
 			return returnCode.parse_failure;
 		}
 		
