@@ -37,16 +37,20 @@ public class Exporter {
 			
 			String ingredients = formatIngredients(ingredientsArray);
 			
-			String contents = "<html>\n"
+			String contents = "<html lang='en'>\n"
+					+ "<head>\n"
+					+ "<title> Recipe for " + title + " </title>\n"
+					+ "<link rel='stylesheet' type='text/css' href='style.css'/>\n"
+					+ "</head>\n"
 					+ "<body>\n"
 					+ "<h1> " + title + " </h1>\n"
-					+ "<section id=ingredients>\n"
-					+ "\t<h2> Ingredients </h2>\n"
-					+ ingredients
+					+ "<section id='ingredients'>\n"
+					+ "<h2> Ingredients </h2>\n"
+					+ ingredients + "\n"
 					+ "</section>\n"
-					+ "<section id=instructions>\n"
-					+ "\t<h2> Instructions </h2>\n"
-					+ instructions
+					+ "<section id='instructions'>\n"
+					+ "<h2> Instructions </h2>\n"
+					+ instructions + "\n"
 					+ "</section>\n"
 					+ "</body>\n"
 					+ "</html>";
@@ -106,11 +110,47 @@ public class Exporter {
 			if (!recipeDir.exists()) {
 				recipeDir.mkdir();
 			}
-			File outputFile = new File("./recipes/" + filename);
 			
+			File outputFile = new File("./recipes/" + filename);
 			if (!outputFile.createNewFile()) {
 				return false;
 			}
+			
+			File styleFile = new File("./recipes/style.css");
+			if (!styleFile.exists()) {
+				styleFile.createNewFile();
+				FileWriter writer = new FileWriter(styleFile);
+				writer.write("@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');\n" + 
+						"\n" + 
+						"body {\n" + 
+						"    background-color: #FAFAFA;\n" + 
+						"    color: #1C1C1E;\n" + 
+						"    font-family: 'Roboto', sans-serif;\n" + 
+						"    width: 100%;\n" + 
+						"    margin: 0;\n" + 
+						"}\n" + 
+						"\n" + 
+						"h1 {\n" + 
+						"  width: 100%;\n" + 
+						"  background-color: #E0115F;\n" + 
+						"  color: white;\n" + 
+						"  text-align: center;\n" + 
+						"}\n" + 
+						"\n" + 
+						"h2 {\n" + 
+						"  text-decoration: underline;\n" + 
+						"}\n" + 
+						"\n" + 
+						"section {\n" + 
+						"  background-color: white;\n" + 
+						"  width: 50%;\n" + 
+						"  margin: auto;\n" + 
+						"}" + 
+						"}");
+				writer.flush();
+				writer.close();
+			}
+			
 			FileWriter writer = new FileWriter(outputFile);
 			writer.write(contents);
 			writer.flush();
